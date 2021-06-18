@@ -1,0 +1,31 @@
+npm install jsonwebtoken
+
+https://helloinyong.tistory.com/111
+https://www.npmjs.com/package/jsonwebtoken
+
+
+//sign.js
+const jwt = require('jsonwebtoken');
+
+var userInfo = {id: 1, username: 'inyong'};
+var secretKey = Sample1_Constant.JWT_SECRET_KEY;
+var options = {expiresIn: '7d', issuer: 'inyongTest', subject: 'userInfo'};
+
+var token=jwt.sign(userInfo, secretKey, options);
+
+module.exports = {
+    token:token
+};
+//decode.js
+const jwt = require('jsonwebtoken');
+
+var token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJpbnlvbmciLCJpYXQiOjE2MjE5MTc4MDgsImV4cCI6MTYyMjUyMjYwOCwiaXNzIjoiaW55b25nVGVzdCIsInN1YiI6InVzZXJJbmZvIn0.4pNkFz3PdKs0BJ50giAYHsBOgMWdsh234GGgBKgoiq0";
+var userInfo = {id: 1, username: 'inyong'};
+var secretKey = Sample1_Constant.JWT_SECRET_KEY;
+var options = {expiresIn: '7d', issuer: 'inyongTest', subject: 'userInfo'};
+
+var data=jwt.verify(token, secretKey);
+
+module.exports = {
+    data:data
+};

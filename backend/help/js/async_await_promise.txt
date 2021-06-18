@@ -1,0 +1,110 @@
+기본규칙
+
+async function 함수명() {
+
+  await 비동기_처리_메서드();
+
+}
+
+function 비동기_처리_메서드(){
+
+  return new Promise(function(resolve, reject) {
+
+    resolve('응답데이터');
+
+  });
+
+}
+
+​
+
+함수 앞에 async 붙인다.
+
+비동기처리코드 앞에 await 을 붙인다.
+
+비동기처리메소드는 프로미스 객체를 반환해야 한다.
+
+프로미스 객체 함수 안에 작동할 코드를 넣고, 반환을 실행한다.(resolve,reject)
+
+*resolve에는 성공 했을때 데이터를 넣는다.
+
+*reject에는 실패 했을때 에러를 넣는다.
+
+*에러처리는 try catch로 처리 할 수 있다.
+
+*프로미스 객체안에서 프로미스 객체를 또 받을 수 있다
+
+*async, await 사용 없이 무한 가능
+
+프로미스 객체안에 코드는 시간이 걸리는 작업 코드를 넣고, 거기서 반환을 하면되겠다.
+
+function fetchItems() {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      var items = [1,2,3];
+      resolve(items)
+    }, 1000);
+  });
+}
+async function logItems() {
+  var resultItems = await fetchItems();
+  console.log(resultItems); // [1,2,3]
+  return resultItems;
+}
+
+var data=logItems();
+​
+
+express에서 사용 예시
+
+router.post('/test', async function(req, res, next) {
+  var data2=await getTest();
+  console.log(data2);
+  res.json({
+    data: data2
+  });
+});
+function getTest(){
+  return new Promise(function(resolve, reject) {
+    setTimeout(function(){
+      console.log("getTest");
+      var data2=getTest2();
+      resolve(data2);
+    },500);
+  });
+}
+function getTest2(){
+  return new Promise(function(resolve, reject) {
+    setTimeout(function(){
+      console.log("getTest2");
+      var data2=getDb();
+      resolve(data2);
+    },500);
+  });
+}
+
+function getDb(){
+    return new Promise(function(resolve, reject) {
+        db.query(`SELECT * FROM foo WHERE 1=1`, function(error, data){
+            if(error){
+                reject(error);
+            }
+            resolve(data);
+        });
+    });
+}
+​
+
+에러처리 try catch
+
+async function logTodoTitle() {
+  try {
+    var user = await fetchUser();
+    if (user.id === 1) {
+      var todo = await fetchTodo();
+      console.log(todo.title); // delectus aut autem
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}

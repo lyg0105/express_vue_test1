@@ -1,0 +1,21 @@
+npm install express-generator -g
+express -h
+express --view=ejs express_test1
+
+//ejs 파일 html 확장자에 적용
+//app.js에 코드변경 및 추가
+app.set('views', path.join(__dirname, `views`));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
+=>이후 router에서 views파일 불러올 때 .html 까지 써서 불러온다. (res.render)
+
+//json 뎁스무제한 설정 false->true 로 변경
+app.use(express.urlencoded({ extended: true }));
+
+//dotenv 설치
+npm install dotenv
+
+//app.js에 추가
+require('dotenv').config();
+=>이제 process.env.이름 으로 .env파일의 설정값을 사용 할 수 있다.

@@ -1,0 +1,90 @@
+//생성자
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+
+
+
+//정적 변수,함수
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  static displayName = "Point";
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+console.log(Point.displayName);      // "Point"
+console.log(Point.distance(p1, p2)); // 7.0710678118654755
+
+//상속
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} makes a noise.`);
+  }
+}
+
+class Dog extends Animal {
+  constructor(name) {
+    super(name); // super class 생성자를 호출하여 name 매개변수 전달
+  }
+
+  speak() {
+    console.log(`${this.name} barks.`);
+  }
+}
+
+let d = new Dog('Mitzie');
+d.speak(); // Mitzie barks.
+
+//클래스 밖에서 함수 추가
+const Animal = {
+  speak() {
+    console.log(`${this.name} makes a noise.`);
+  }
+};
+
+class Dog {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+Object.setPrototypeOf(Dog.prototype, Animal);
+
+let d = new Dog('Mitzie');
+d.speak(); // Mitzie makes a noise.
+
+//super로 상위클래스 호출
+class Cat {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} makes a noise.`);
+  }
+}
+
+class Lion extends Cat {
+  speak() {
+    super.speak();
+    console.log(`${this.name} roars.`);
+  }
+}
+
+let l = new Lion('Fuzzy');
+l.speak();

@@ -1,0 +1,26 @@
+https://lahuman.github.io/nodejs_global/
+
+1.첫번째방법. global 이용
+
+//app.js
+// global.변수명 = 사용하려는 변수명
+let running = false;
+global.running = running;
+
+
+//test.js
+//이후 다른 js에서 다음과 같이 사용 하면된다.
+console.log(running);
+running = false;
+console.log(running);
+
+
+2.두번째방법. require 이용
+
+# test.js
+module.exports = {running: true}
+
+# app.js
+let test = require('test.js');
+test.running = false;
+console.log(test.running);

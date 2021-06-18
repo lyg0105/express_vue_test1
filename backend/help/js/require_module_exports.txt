@@ -1,0 +1,23 @@
+https://medium.com/@chullino/require-exports-module-exports-%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-1d024ec5aca3
+
+require의 형태
+var require = function(src){                 //line 1
+    var fileAsStr = readFile(src)            //line 2
+    var module.exports = {}                  //line 3
+    eval(fileAsStr)                          //line 4
+    return module.exports                    //line 5
+}
+
+//eval(fileAsStr) 설명
+module.exports에 fileAsStr값을 key,value로 넣는 것임.
+ex)
+const a = 10
+exports.a = a;  
+
+module.exports 와 exports 는 같다.
+exports는 module.exports를 refer 하고 있고, shortcut 이다.
+
+
+module.exports.foo = function() { console.log("foo") } //가능
+exports = function() { console.log("foo")} //불가 (refer 자체를 변경하는 것임.)
+module.exports = function() { console.log("foo")} //가능 (module.exports 에 key,value를 추가하는 것임)

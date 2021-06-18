@@ -1,0 +1,37 @@
+//라우터분리
+//app.js
+
+var apiRouter = require('./routes/api');
+app.use('/api', apiRouter);
+
+// routes/api.js
+var express = require('express');
+var test=require('./api/test/test');
+var router = express.Router();
+/* GET home page. */
+router.get('/',async function(req, res, next) {
+    res.send("GG");
+});
+
+router.use('/test',test);
+
+module.exports = router;
+
+//분리에 분리 또 하기
+// routes/test/test.js
+var express = require('express');
+var router = express.Router();
+/* GET home page. */
+router.get('/',async function(req, res, next) {
+    res.send("GG2");
+});
+
+router.get('/list',async function(req, res, next) {
+    res.send("list");
+});
+
+router.get('/write',async function(req, res, next) {
+    res.send("write");
+});
+
+module.exports = router;

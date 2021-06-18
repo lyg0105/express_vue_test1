@@ -1,0 +1,19 @@
+위치
+-깃에올릴예정
+-공유컴퓨터:  D:/공유/임시
+설치
+-help폴더 참고
+설정
+-.env
+-app.js 에서 global.Sample1_Constant 글로벌변수
+-config/my_constant.js 에서 불러온다.
+라우터 API, View
+-view는  url에 따라 폴더 연결 자동
+-api , 뷰처럼 바꿀예정
+모델
+
+베이스모델
+커스텀모델
+라이터에서 불러쓰기
+서비스에서 불러쓰기
+JWT
