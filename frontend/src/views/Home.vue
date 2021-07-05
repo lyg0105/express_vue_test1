@@ -2,7 +2,11 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <h1>홈!!</h1>
+    <h1>{{title}}</h1>
+    <div>
+      <input type="text" v-model="input1" />
+      <button type="button" @click="getData" >Get</button>
+    </div>
   </div>
 </template>
 
@@ -14,6 +18,17 @@ export default {
   name: 'Home',
   components: {
     //HelloWorld
+  },
+  data(){
+    return {
+      title:"개발자!!",
+      input1:"abcd"
+    }
+  },
+  methods:{
+    getData(){
+      alert(this.input1);
+    }
   }
 }
 </script>
