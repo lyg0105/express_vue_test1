@@ -1,0 +1,20 @@
+양방향바인딩
+
+<template>
+  <input type="text" v-model="text">
+  <p>{{text}}</p>
+</template>
+<script>
+
+export default {
+  name: 'Data',
+  data(){
+    return {
+      text:""
+    }
+  },
+  methods:{
+  
+  }
+}
+</script>

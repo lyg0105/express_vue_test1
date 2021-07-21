@@ -1,0 +1,43 @@
+<template>
+  <div>
+    <h1>Data Page</h1>
+    <!-- <template v-if="number==1">
+      <div>Yes</div>
+    </template>
+    <div v-else-if="number==2">Hi</div>
+    <div v-else>No</div>
+    <button @click="addNum">Toggle</button>{{number}} -->
+    <div v-show="show">Yes</div>
+    <button @click="toggleShow">Toggle</button>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+//import HelloWorld from '@/components/HelloWorld.vue'
+
+export default {
+  name: 'Data',
+  data(){
+    return {
+      show:true,
+      number:0
+    }
+  },
+  methods:{
+    toggleShow(){
+      this.show=!this.show;
+    },
+    addNum(){
+      this.number++;
+    }
+  },
+  watch:{
+    
+  }
+}
+</script>
+
+<style>
+
+</style>

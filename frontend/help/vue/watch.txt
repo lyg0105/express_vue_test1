@@ -1,0 +1,31 @@
+<template>
+  <div>
+    <h1>Data Page</h1>
+    <input type="text" v-model="text">
+    <p>{{text}}</p>
+    <p>{{updated}}</p>
+  </div>
+</template>
+<script>
+// @ is an alias to /src
+//import HelloWorld from '@/components/HelloWorld.vue'
+
+export default {
+  name: 'Data',
+  data(){
+    return {
+      text:'안녕하세요',
+      updated:'아니오'
+    }
+  },
+  methods:{
+  
+  },
+  watch:{
+    text(newVal,oldVal){
+      console.log(newVal,oldVal);
+      this.updated='Yes';
+    }
+  }
+}
+</script>
